@@ -20,8 +20,6 @@ class UserCompanySeeder extends Seeder
                     ->state(['name' => 'FinObotZap'])
                     // endereço/UF/telefone BR (gera Address->country_code = BR)
                     ->withCompanyProfile('BR')
-                    // moeda BRL + locale pt (número, % e semana conforme Brasil)
-                    ->withCompanyDefaults('BRL', 'pt')
                     ->withTransactions(250)
                     ->withOfferings()
                     ->withClients()
@@ -54,14 +52,14 @@ class UserCompanySeeder extends Seeder
                 ])
                 ->withCompanyProfile($c['country'])
                 ->withCompanyDefaults($c['currency'], $c['locale'])
-                ->withTransactions(50)
+                ->withTransactions(5)
                 ->withOfferings()
                 ->withClients()
                 ->withVendors()
-                ->withInvoices()
+                ->withInvoices(5)
                 ->withRecurringInvoices()
-                ->withEstimates()
-                ->withBills()
+                ->withEstimates(5)
+                ->withBills(5)
                 ->create();
         }
 
