@@ -55,7 +55,7 @@ class CreateCompany extends FilamentCreateCompany
                     ->maxLength(255)
                     ->softRequired(),
                 TextInput::make('profile.email')
-                    ->label('Company email')
+                    ->label(__('filament-companies::default.labels.company_email')) //TODO: TRADUÇÃO EM FILAMENT!
                     ->email()
                     ->softRequired(),
                 Select::make('profile.entity_type')
@@ -67,8 +67,8 @@ class CreateCompany extends FilamentCreateCompany
                     ->live()
                     ->searchable()
                     ->options(Country::getAvailableCountryOptions())
-                    ->getSearchResultsUsing(fn (string $search): array => Country::getSearchResultsUsing($search))
-                    ->getOptionLabelUsing(fn ($value): ?string => Country::find($value)?->name . ' ' . Country::find($value)?->flag)
+                    ->getSearchResultsUsing(fn(string $search): array => Country::getSearchResultsUsing($search))
+                    ->getOptionLabelUsing(fn($value): ?string => Country::find($value)?->name . ' ' . Country::find($value)?->flag)
                     ->softRequired(),
                 Select::make('locale.language')
                     ->label('Language')
