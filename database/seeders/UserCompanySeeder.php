@@ -19,7 +19,7 @@ class UserCompanySeeder extends Seeder
             ->withPersonalCompany(function (CompanyFactory $factory) {
                 return $factory
                     ->state([
-                        'name' => 'ERPSAAS',
+                        'name' => 'FinObotZap',
                     ])
                     ->withTransactions(250)
                     ->withOfferings()
@@ -52,7 +52,7 @@ class UserCompanySeeder extends Seeder
                 ])
                 ->withCompanyProfile($companyData['country'])
                 ->withCompanyDefaults($companyData['currency'], $companyData['locale'])
-                ->withTransactions(50)
+                ->withTransactions(10)
                 ->withOfferings()
                 ->withClients()
                 ->withVendors()
