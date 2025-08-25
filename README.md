@@ -11,9 +11,6 @@
 ![Screenshot 2025-06-05 at 16-35-03 Account Transactions - ERPSAAS](https://github.com/user-attachments/assets/7801580f-4481-402d-8c57-e64ba2817f92)
 ![Screenshot 2025-06-05 at 16-35-21 Account Balances - ERPSAAS](https://github.com/user-attachments/assets/b9f66e86-0981-43d8-8b73-c148c77cb263)
 
-
-
-
 A Laravel and Filament-powered accounting platform featuring full double-entry accrual accounting, delivering modern automation for professional financial management.
 
 # Demo
@@ -22,14 +19,14 @@ A Laravel and Filament-powered accounting platform featuring full double-entry a
 
 The demo environment provides a complete experience of the application with the following setup:
 
-- **Login Credentials**: Pre-filled for convenience (email: admin@erpsaas.com, password: password)
-- **Multi-Company Setup**: 8 pre-configured companies with different currencies:
-    - ERPSAAS (USD)
-    - British Crown Analytics (GBP)
-    - Berlin Tech Solutions (EUR)
-    - Mumbai Software Services (INR)
-- **Feature Access**: Full accounting functionality with simplified user management
-- **Limitations**: Plaid, Live Currency, Profile customization, password reset, and registration are disabled
+-   **Login Credentials**: Pre-filled for convenience (email: admin@erpsaas.com, password: password)
+-   **Multi-Company Setup**: 8 pre-configured companies with different currencies:
+    -   ERPSAAS (USD)
+    -   British Crown Analytics (GBP)
+    -   Berlin Tech Solutions (EUR)
+    -   Mumbai Software Services (INR)
+-   **Feature Access**: Full accounting functionality with simplified user management
+-   **Limitations**: Plaid, Live Currency, Profile customization, password reset, and registration are disabled
 
 This demo is ideal for evaluating the application's multi-currency capabilities and core features without any
 installation required.
@@ -114,7 +111,7 @@ Run the database seeder
 
     php artisan db:seed
 
-***Note***: It's recommended to have a clean database before seeding. You can reset your database to a clean state at
+**_Note_**: It's recommended to have a clean database before seeding. You can reset your database to a clean state at
 any point by running the following command:
 
     php artisan migrate:fresh
@@ -127,16 +124,24 @@ application, but you need to install Wkhtmltopdf separately.
 ### Wkhtmltopdf Installation
 
 1. **Download and install Wkhtmltopdf**
+
     - [Wkhtmltopdf Downloads](https://wkhtmltopdf.org/downloads.html)
 
     - Alternatively, if you are using Homebrew on macOS, you can install it using the following command:
-      ```bash
-      brew install wkhtmltopdf
-      ```
+        ```bash
+        brew install wkhtmltopdf
+        ```
 
 2. **Configure the binary paths**
+
     - If needed, you can change the paths to the Wkhtmltopdf binaries in the Snappy configuration file (
       `config/snappy.php`).
+
+3. **Install PDF Service in docker image**
+    - `docker cp wkhtmltox_0.12.6.1-2.jammy_amd64.deb erpsas-laravel.test-1:/tmp/`
+    - `./vendor/bin/sail exec -u root laravel.test bash -lc "apt-get update && apt-get install -y /tmp/wkhtmltox_0.12.6.1-2.jammy_amd64.deb"`
+    - `./vendor/bin/sail exec laravel.test which wkhtmltopdf`
+    - `./vendor/bin/sail exec laravel.test wkhtmltopdf -V`
 
 For detailed installation instructions, refer to
 the [Laravel Snappy documentation](https://github.com/barryvdh/laravel-snappy).
@@ -195,12 +200,12 @@ their company's currencies as needed.
 
 ### Important Information
 
-- To use the currency exchange rate feature, you must first obtain an API key from a service provider. This application
-  is configured to use a service that offers a free tier suitable for development and testing purposes.
-- Your API key is sensitive information and should be kept secret. Do not commit it to your repository or share it with
-  anyone.
-- Note that API rate limits may apply depending on the service you choose. Make sure to review the terms for your chosen
-  service.
+-   To use the currency exchange rate feature, you must first obtain an API key from a service provider. This application
+    is configured to use a service that offers a free tier suitable for development and testing purposes.
+-   Your API key is sensitive information and should be kept secret. Do not commit it to your repository or share it with
+    anyone.
+-   Note that API rate limits may apply depending on the service you choose. Make sure to review the terms for your chosen
+    service.
 
 ## Automatic Translation
 
@@ -279,18 +284,18 @@ Pest, refer to the official documentation: [Pest Documentation](https://pestphp.
 
 ## Dependencies
 
-- [filamentphp/filament](https://github.com/filamentphp/filament) - A collection of beautiful full-stack components
-- [andrewdwallo/filament-companies](https://github.com/andrewdwallo/filament-companies) - A complete authentication
-  system kit based on companies built for Filament
-- [andrewdwallo/transmatic](https://github.com/andrewdwallo/transmatic) - A package for automatic translation using
-  machine translation services
-- [akaunting/laravel-money](https://github.com/akaunting/laravel-money) - Currency formatting and conversion package for
-  Laravel
-- [squirephp/squire](https://github.com/squirephp/squire) - A library of static Eloquent models for common fixture data
-- [awcodes/filament-table-repeater](https://github.com/awcodes/filament-table-repeater) - A modified version of the
-  Filament Forms Repeater to display it as a table.
+-   [filamentphp/filament](https://github.com/filamentphp/filament) - A collection of beautiful full-stack components
+-   [andrewdwallo/filament-companies](https://github.com/andrewdwallo/filament-companies) - A complete authentication
+    system kit based on companies built for Filament
+-   [andrewdwallo/transmatic](https://github.com/andrewdwallo/transmatic) - A package for automatic translation using
+    machine translation services
+-   [akaunting/laravel-money](https://github.com/akaunting/laravel-money) - Currency formatting and conversion package for
+    Laravel
+-   [squirephp/squire](https://github.com/squirephp/squire) - A library of static Eloquent models for common fixture data
+-   [awcodes/filament-table-repeater](https://github.com/awcodes/filament-table-repeater) - A modified version of the
+    Filament Forms Repeater to display it as a table.
 
-***Note*** : It is recommended to read the documentation for all dependencies to get yourself familiar with how the
+**_Note_** : It is recommended to read the documentation for all dependencies to get yourself familiar with how the
 application works.
 
 ## License
