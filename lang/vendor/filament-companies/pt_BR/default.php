@@ -51,6 +51,15 @@ return [
     'labels' => [
         'company_name' => 'Nome da Empresa',
         'company_owner' => 'Proprietário da Empresa',
+        'company_email' => 'Email da Empresa',
+        'entity_type' => 'Tipo de Entidade',
+        'country' => 'País',
+        'language' => 'Idioma',
+        'currency' => 'Moeda',
+        'income_statement' => 'Demonstração de Resultados',
+        'balance_sheet' => 'Balanço Patrimonial',
+        'balance_sheet_desc' => 'Exibe os ativos, passivos e patrimônio líquido da sua empresa em um único ponto no tempo, mostrando a saúde e estabilidade financeira geral.',
+        'cash_flow_statement' => 'Demonstração de Fluxo de Caixa',
         'connected' => 'Conectado',
         'created_at' => 'Criado em',
         'last_active' => 'Última Atividade',
@@ -99,6 +108,9 @@ return [
 
     'descriptions' => [
         'token_created_state' => 'Criado há :time_ago por :user_name.',
+        'income_statement_desc' => 'Mostra a receita, despesas e lucro líquido ao longo de um período, indicando o desempenho financeiro geral.',
+        'balance_sheet_desc' => 'Exibe os ativos, passivos e patrimônio líquido da sua empresa em um único ponto no tempo, mostrando a saúde e estabilidade financeira geral.',
+        'cash_flow_statement_desc' => 'Rastreia as entradas e saídas de caixa, fornecendo insights sobre a liquidez e a gestão de caixa ao longo de um período.',
         'token_last_used_state' => 'Último uso há :time_ago',
         'token_never_used' => 'Nunca usado',
         'token_updated_state' => 'Atualizado há :time_ago',

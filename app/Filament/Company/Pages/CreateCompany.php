@@ -55,15 +55,15 @@ class CreateCompany extends FilamentCreateCompany
                     ->maxLength(255)
                     ->softRequired(),
                 TextInput::make('profile.email')
-                    ->label(__('filament-companies::default.labels.company_email')) //TODO: TRADUÇÃO EM FILAMENT!
+                    ->label(__('filament-companies::default.labels.company_email'))
                     ->email()
                     ->softRequired(),
                 Select::make('profile.entity_type')
-                    ->label('Entity type')
+                    ->label(__('filament-companies::default.labels.entity_type'))
                     ->options(EntityType::class)
                     ->softRequired(),
                 Select::make('profile.country')
-                    ->label('Country')
+                    ->label(__('filament-companies::default.labels.country'))
                     ->live()
                     ->searchable()
                     ->options(Country::getAvailableCountryOptions())
@@ -71,12 +71,12 @@ class CreateCompany extends FilamentCreateCompany
                     ->getOptionLabelUsing(fn($value): ?string => Country::find($value)?->name . ' ' . Country::find($value)?->flag)
                     ->softRequired(),
                 Select::make('locale.language')
-                    ->label('Language')
+                    ->label(__('filament-companies::default.labels.language'))
                     ->searchable()
                     ->options(Localization::getAllLanguages())
                     ->softRequired(),
                 Select::make('currencies.code')
-                    ->label('Currency')
+                    ->label(__('filament-companies::default.labels.currency'))
                     ->searchable()
                     ->options(CurrencyAccessor::getAllCurrencyOptions())
                     ->optionsLimit(5)

@@ -35,7 +35,7 @@ class Reports extends Page
                 ->parentItem(static::getNavigationParentItem())
                 ->icon(static::getNavigationIcon())
                 ->activeIcon(static::getActiveNavigationIcon())
-                ->isActiveWhen(fn (): bool => request()->routeIs([
+                ->isActiveWhen(fn(): bool => request()->routeIs([
                     static::getRouteName(),
                     static::getRouteName() . '.*',
                 ]))
@@ -58,22 +58,22 @@ class Reports extends Page
                     ->schema([
                         ReportEntry::make('income_statement')
                             ->hiddenLabel()
-                            ->heading('Income Statement')
-                            ->description('Shows revenue, expenses, and net earnings over a period, indicating overall financial performance.')
+                            ->heading(__('filament-companies::default.labels.income_statement'))
+                            ->description(__('filament-companies::default.descriptions.income_statement_desc'))
                             ->icon('heroicon-o-chart-bar')
                             ->iconColor(Color::Purple)
                             ->url(IncomeStatement::getUrl()),
                         ReportEntry::make('balance_sheet')
                             ->hiddenLabel()
-                            ->heading('Balance Sheet')
-                            ->description('Displays your company’s assets, liabilities, and equity at a single point in time, showing overall financial health and stability.')
+                            ->heading(__('filament-companies::default.labels.balance_sheet'))
+                            ->description(__('filament-companies::default.descriptions.balance_sheet_desc'))
                             ->icon('heroicon-o-clipboard-document-list')
                             ->iconColor(Color::Teal)
                             ->url(BalanceSheet::getUrl()),
                         ReportEntry::make('cash_flow_statement')
                             ->hiddenLabel()
-                            ->heading('Cash Flow Statement')
-                            ->description('Tracks cash inflows and outflows, giving insight into liquidity and cash management over a period.')
+                            ->heading(__('filament-companies::default.labels.cash_flow_statement'))
+                            ->description(__('filament-companies::default.descriptions.cash_flow_statement_desc'))
                             ->icon('heroicon-o-document-currency-dollar')
                             ->iconColor(Color::Cyan)
                             ->url(CashFlowStatement::getUrl()),
