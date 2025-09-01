@@ -31,7 +31,7 @@
         </div>
 
         <div
-            class="fi-simple-main-ctn flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24 w-1/2 bg-white"
+            class="fi-simple-main-ctn flex flex-1 flex-col justify-center px-4 py-12 sm:px-6 lg:flex-none lg:px-20 xl:px-24 w-1/2 bg-gray-200 dark:bg-gray-800"
         >
             <main
                 @class([

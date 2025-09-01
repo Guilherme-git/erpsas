@@ -3,24 +3,23 @@
 namespace Database\Seeders;
 
 use App\Models\Company;
+use App\Models\Setting\DocumentDefault;
+use App\Enums\Accounting\DocumentType;
 use App\Models\User;
 use Database\Factories\CompanyFactory;
 use Illuminate\Database\Seeder;
 
 class UserCompanySeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        // Create a single admin user and their personal company
+        // Admin + empresa pessoal com BRL/PT-BR
         $user = User::factory()
             ->withPersonalCompany(function (CompanyFactory $factory) {
                 return $factory
-                    ->state([
-                        'name' => 'FinObotZap',
-                    ])
+                    ->state(['name' => 'FinObotZap'])
+                    // endereço/UF/telefone BR (gera Address->country_code = BR)
+                    ->withCompanyProfile('BR')
                     ->withTransactions(250)
                     ->withOfferings()
                     ->withClients()
@@ -32,35 +31,59 @@ class UserCompanySeeder extends Seeder
             })
             ->create([
                 'name' => 'Admin',
-                'email' => 'admin@erpsaas.com',
-                'password' => bcrypt('password'),
-                'current_company_id' => 1,  // Assuming this will be the ID of the created company
+                'email' => 'admin@obotzap.com',
+                'password' => bcrypt('password!'),
+                'current_company_id' => 1,
             ]);
 
+        // Empresas adicionais já em BR
         $additionalCompanies = [
-            ['name' => 'British Crown Analytics', 'country' => 'GB', 'currency' => 'GBP', 'locale' => 'en'],
-            ['name' => 'Berlin Tech Solutions', 'country' => 'DE', 'currency' => 'EUR', 'locale' => 'en'],
-            ['name' => 'Mumbai Software Services', 'country' => 'IN', 'currency' => 'INR', 'locale' => 'en'],
+            ['name' => 'São Paulo Tech Ltda',     'country' => 'BR', 'currency' => 'BRL', 'locale' => 'pt'],
+            ['name' => 'Rio Analytics Serviços',  'country' => 'BR', 'currency' => 'BRL', 'locale' => 'pt'],
+            ['name' => 'Curitiba Data Studio',    'country' => 'BR', 'currency' => 'BRL', 'locale' => 'pt'],
         ];
 
-        foreach ($additionalCompanies as $companyData) {
+        foreach ($additionalCompanies as $c) {
             Company::factory()
                 ->state([
-                    'name' => $companyData['name'],
+                    'name' => $c['name'],
                     'user_id' => $user->id,
                     'personal_company' => false,
                 ])
-                ->withCompanyProfile($companyData['country'])
-                ->withCompanyDefaults($companyData['currency'], $companyData['locale'])
-                ->withTransactions(10)
+                ->withCompanyProfile($c['country'])
+                ->withCompanyDefaults($c['currency'], $c['locale'])
+                ->withTransactions(5)
                 ->withOfferings()
                 ->withClients()
                 ->withVendors()
-                ->withInvoices()
+                ->withInvoices(5)
                 ->withRecurringInvoices()
-                ->withEstimates()
-                ->withBills()
+                ->withEstimates(5)
+                ->withBills(5)
                 ->create();
         }
+
+        // (Opcional) Localizar rótulos/prefixos dos documentos para PT-BR
+        $this->localizeDocumentDefaultsToPtBr($user);
+    }
+
+    private function localizeDocumentDefaultsToPtBr(User $user): void
+    {
+        $company = $user->ownedCompanies()->first();
+
+        // Fatura
+        DocumentDefault::where('company_id', $company->id)
+            ->where('type', DocumentType::Invoice)
+            ->update(['header' => 'Fatura', 'number_prefix' => 'FAT']);
+
+        // Orçamento / Proposta
+        DocumentDefault::where('company_id', $company->id)
+            ->where('type', DocumentType::Estimate)
+            ->update(['header' => 'Proposta', 'number_prefix' => 'ORC']);
+
+        // Contas a pagar
+        DocumentDefault::where('company_id', $company->id)
+            ->where('type', DocumentType::Bill)
+            ->update(['header' => 'Conta a Pagar', 'number_prefix' => 'CPG']);
     }
 }
