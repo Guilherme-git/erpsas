@@ -76,6 +76,8 @@ return [
         'token_name' => 'Nome do Token',
         'unknown' => 'Desconhecido',
         'updated_at' => 'Atualizado em',
+        'accounts_receivable' => 'Contas a Receber',
+        'balance_client' => 'Resumo do saldo do cliente',
     ],
 
     'links' => [
@@ -114,6 +116,8 @@ return [
         'token_last_used_state' => 'Último uso há :time_ago',
         'token_never_used' => 'Nunca usado',
         'token_updated_state' => 'Atualizado há :time_ago',
+        'accounts_receivable_desc' => 'Lista contas a receber pendentes por cliente, mostrando há quanto tempo as faturas não foram pagas',
+        'balance_client_desc' => 'Exibe os valores totais faturados, pagamentos recebidos e saldos pendentes de cada cliente, ajudando a identificar os principais clientes e oportunidades de crescimento',
     ],
 
     'banner' => [

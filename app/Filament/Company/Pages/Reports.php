@@ -85,15 +85,15 @@ class Reports extends Page
                     ->schema([
                         ReportEntry::make('ar_aging')
                             ->hiddenLabel()
-                            ->heading('Accounts Receivable Aging')
-                            ->description('Lists outstanding receivables by client, showing how long invoices have been unpaid.')
+                            ->heading(__('filament-companies::default.labels.accounts_receivable'))
+                            ->description(__('filament-companies::default.descriptions.accounts_receivable_desc'))
                             ->icon('heroicon-o-calendar-date-range')
                             ->iconColor(Color::Indigo)
                             ->url(AccountsReceivableAging::getUrl()),
                         ReportEntry::make('client_balance_summary')
                             ->hiddenLabel()
-                            ->heading('Client Balance Summary')
-                            ->description('Shows total invoiced amounts, payments received, and outstanding balances for each client, helping identify top clients and opportunities for growth.')
+                            ->heading(__('filament-companies::default.labels.balance_client'))
+                            ->description(__('filament-companies::default.descriptions.balance_client_desc'))
                             ->icon('heroicon-o-receipt-percent')
                             ->iconColor(Color::Emerald)
                             ->url(ClientBalanceSummary::getUrl()),
